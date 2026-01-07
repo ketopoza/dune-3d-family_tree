@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Árbol Genealógico 3D</title>
+
   <style>
     body { 
       margin: 0; 
@@ -10,7 +11,7 @@
       background-color: #f8f9fb;
       font-family: system-ui, sans-serif;
     }
-    
+
     #three-container {
       position: fixed;
       left: 0;
@@ -19,30 +20,30 @@
       height: 100vh;
       z-index: 1;
     }
-    
-    /* DESENFOCUE LONGITUDINAL (nítido cerca → desenfoque fondo) */
+
+    /* DESENFOCUE LONGITUDINAL */
     #three-container::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       background: linear-gradient(
         to bottom, 
-        transparent 0%,                    /* CERCA CÁMARA: NÍVIDO */
+        transparent 0%,
         rgba(248,249,251,0.15) 35%,       
-        rgba(248,249,251,0.35) 65%,       /* FONDO: DESENFOCADO */
+        rgba(248,249,251,0.35) 65%,
         rgba(248,249,251,0.55) 100%
       );
       pointer-events: none;
       z-index: 1;
       mix-blend-mode: screen;
     }
-    
+
     #three-container canvas {
       position: relative;
       z-index: 2;
     }
-    
-    /* PANEL INFO */
+
+    /* PANEL INFO PRINCIPAL */
     #info-panel {
       position: fixed;
       right: 20px;
@@ -58,24 +59,92 @@
       font-size: 14px;
       z-index: 1000;
     }
+
+    /* PANEL INFO SECUNDARIO */
+    #info-panel-secundario {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      padding: 16px;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      max-width: 320px;
+      width: 100%;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      z-index: 900;
+
+      /* Estado cerrado */
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px) scale(0.98);
+      transition: all 0.25s ease;
+    }
+
+    /* Estado abierto */
+    #info-panel-secundario.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    #info-panel-secundario p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #555;
+    }
+
+    /* BOTÓN TOGGLE */
+    #toggle-panel-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      background: white;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      font-size: 26px;
+      font-weight: 300;
+      cursor: pointer;
+      z-index: 950;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    #toggle-panel-btn:hover {
+      background: #f3f3f3;
+      transform: scale(1.05);
+    }
+
+    /* PANEL INFO CONTENIDOS */
     #info-nombre {
       margin: 0 0 8px 0;
       font-size: 22px;
       font-weight: 600;
       letter-spacing: 0.03em;
     }
+
     #info-fechas {
       margin: 0 0 16px 0;
       font-size: 12px;
       color: #888;
       font-style: italic;
     }
+
     #info-descripcion {
       margin: 0 0 16px 0;
       font-size: 14px;
       line-height: 1.5;
       color: #444;
     }
+
     #info-saga {
       margin: 0;
       font-size: 13px;
@@ -84,6 +153,7 @@
       border-top: 1px solid #eee;
       padding-top: 8px;
     }
+
     #info-cerrar {
       position: absolute;
       top: 12px;
@@ -93,41 +163,109 @@
       font-size: 18px;
       cursor: pointer;
       color: #999;
-      padding: 0;
       width: 24px;
       height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     #info-cerrar:hover {
       color: #333;
       background: #f0f0f0;
       border-radius: 50%;
     }
+
+    /* IMAGEN AUTOR */
+    .autor-imagen {
+      display: block;
+      max-width: 150px;
+      width: 100%;
+      margin-top: 6px;
+      opacity: 0.9;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .autor-imagen:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
   </style>
 </head>
+
 <body>
 
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-  }
-}
-</script>
-<div id="three-container"></div>
-<script type="module" src="./main.js"></script>
+  <!-- HEADER -->
+  <h1 style="
+    position: fixed;
+    margin: -7px;
+    margin-left: 0px;
+    font-size: 32px;
+    font-weight: 500;
+    color: #2c3e50;
+    z-index: 2000;
+  ">
+    DUNE 3D FAMILY TREE
+  </h1>
 
-<!-- PANEL INFORMACIÓN -->
-<div id="info-panel">
-  <button id="info-cerrar">✕</button>
-  <h1 id="info-nombre"></h1>
-  <p id="info-fechas"></p>
-  <p id="info-descripcion"></p>
-  <p id="info-saga"></p>
-</div>
+  <!-- THREE IMPORT -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <div id="three-container"></div>
+  <script type="module" src="./main.js"></script>
+
+  <!-- PANEL INFORMACIÓN PRINCIPAL -->
+  <div id="info-panel">
+    <button id="info-cerrar">✕</button>
+    <h1 id="info-nombre"></h1>
+    <p id="info-fechas"></p>
+    <p id="info-descripcion"></p>
+    <p id="info-saga"></p>
+  </div>
+
+  <!-- BOTÓN TOGGLE PANEL SECUNDARIO -->
+  <button id="toggle-panel-btn">+</button>
+
+  <!-- PANEL INFORMACIÓN SECUNDARIO -->
+  <div id="info-panel-secundario">
+    <p><strong>Uni Project:</strong><br>
+      UdK_ Mythologies of the Future: Between Science Fiction and Reality_ 
+      Prof. Dr. Daniel Hromada
+    </p>
+
+    <p><br>12_25/01_26</p>
+
+    <p><br>
+      <a href="https://enriquepoza.bio" target="_blank">
+        <img 
+          src="./img/naming.png"
+          alt="Enrique Poza Herranz"
+          class="autor-imagen"
+        >
+      </a>
+    </p>
+  </div>
+
+  <!-- TOGGLE SCRIPT -->
+  <script>
+    const toggleBtn = document.getElementById('toggle-panel-btn');
+    const panel = document.getElementById('info-panel-secundario');
+
+    let isOpen = false;
+
+    toggleBtn.addEventListener('click', () => {
+      isOpen = !isOpen;
+      panel.classList.toggle('active', isOpen);
+      toggleBtn.textContent = isOpen ? '–' : '+';
+    });
+  </script>
 
 </body>
 </html>

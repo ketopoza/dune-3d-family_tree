@@ -170,7 +170,7 @@ ABULURD: {
 
 // House Atreides.
      AGAMENON: {
-    nombre: 'Agamenon',
+    nombre: 'AGAMENON',
     periodo: '? -10,000 AG’',
     relevancia: 'Leader of the human Titans who became cymeks; tyrannical ruler in the age of thinking machines before and during the Butlerian Jihad.',
     saga: 'Legends of Dune'
@@ -181,6 +181,27 @@ ABULURD: {
     periodo: 'c. 10200 - 9000 AG',
     relevancia: 'Son of the Titan Agamemnon who defects to humans; a hero of the Butlerian Jihad and ancestral founder of House Atreides and its feud with House Harkonnen.',
     saga: 'Legends of Dune'
+    },
+
+        IVETTE: {
+    nombre: 'IVETTE HAGAL',
+    periodo: 'c. 10,0xx AG',
+    relevancia: 'Mother of Edwina Corrino from House Hagal. Ancestral figure in Richese-Corrino lineage, with minimal direct role in major plots but foundational to family alliances.',
+    saga: 'Prelude to Dune'
+    },
+
+       EDWINA: {
+    nombre: 'EDWINA CORRINO',
+    periodo: 'c. 10,095 - 10,123 AG',
+    relevancia: 'Daughter of House Corrino, wife of Count Ilban Richese. Mother of Helena Richese (Atreides) and numerous siblings, linking imperial and technocratic houses before Prelude events.',
+    saga: 'Prelude to Dune'
+    },
+
+    MOHIAM: {
+    nombre: 'GAIUS HELEN MOHIAM',
+    periodo: 'c. 10,100 - 10,210 AG',
+    relevancia: 'Bene Gesserit Reverend Mother, Imperial Truthsayer to Shaddam IV. Secret biological mother of Lady Jessica (via Baron Harkonnen), mentor who tested Paul with gom jabbar; plotted against Paul in Dune Messiah.',
+    saga: 'Dune + Prelude to Dune'
     },
 
         PAULUS: {
@@ -281,7 +302,7 @@ ABULURD: {
     saga: 'Dune'
     },
 
-    DUCAN: {
+    IDAHO: {
     nombre: 'DUCAN IDAHO',
     periodo: '10,130 - 10,191 AG / Gholas 10,220 - far post- Scattering',
     relevancia: 'Swordmaster of Ginaz and loyal Atreides retainer who dies defending Paul and Jessica on Arrakis; his persona becomes the template for countless later gholas. Gohlas: Series of Tleilaxu-created reincarnations serving successive Atreides regimes—from Leto II to the Bene Gesserit in later eras—linking the Old Empire to the far future. ',
