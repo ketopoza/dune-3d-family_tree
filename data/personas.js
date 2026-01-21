@@ -74,7 +74,7 @@ ABULURD: {
     VLADIMIR: {
     nombre: 'VLADIMIR HARKONNEN',
     nacimiento: '10,110 AG - 10,193 AG',
-    relevancia: 'Vladimir is one of the primary antagonists of Dune. He embodies the cruelty and strategic ruthlessness of the Harkonnen house and orchestrates many of the plots against House Atreides. Gay figure, proteyd as decadent, manipulative, corrupt and rapist. He embodies the pure evil. Continues the classic stereotype of gay men as pedophiles. ',
+    relevancia: 'Vladimir is one of the primary antagonists of Dune. He embodies the cruelty and strategic ruthlessness of the Harkonnen house and orchestrates many of the plots against House Atreides.            _Gay figure, proteyd as decadent, manipulative, corrupt and rapist. He embodies the pure evil. Continues the classic stereotype of gay men as pedophiles. ',
     saga: 'Dune'
   },
 /// House Corrino
@@ -242,21 +242,21 @@ ABULURD: {
     JESSICA: {
     nombre: 'LADY JESSICA',
     periodo: 'c. 10,140 – 10,220 AG',
-    relevancia: 'Bene Gesserit concubine of Duke Leto I and mother of Paul and Alia; her defiance of the Bene Gesserit’s breeding plan by bearing a son creates the Kwisatz Haderach. \n Face of the Bene Gesserit, a woman only organisation (convent) where they are protrayed as manipulators that rule from the shadows for their own objectives. Woman in view as a politic instrument rather than autonomous subject/human. ',
+    relevancia: 'Bene Gesserit concubine of Duke Leto I and mother of Paul and Alia; her defiance of the Bene Gesserit’s breeding plan by bearing a son creates the Kwisatz Haderach.           _Face of the Bene Gesserit, a woman only organisation (convent) where they are protrayed as manipulators that rule from the shadows for their own objectives. Woman in view as a politic instrument rather than autonomous subject/human. ',
     saga: 'Dune'
     },
 
     PAUL: {
     nombre: 'PAUL ATREIDES / MUAB DIB',
     periodo: '10,157 – c. 10,223 AG',
-    relevancia: 'Son of Leto I and Jessica; first Kwisatz Haderach, Fremen messiah Muad’Dib, and founder of the Atreides Imperium who overthrows Shaddam IV and reshapes the galaxy. \nPaul is a savior, leader and man-God for the Fremen. In actual times: European aristocratic/privileged man that "saves" the natives from their own unicivilisation and pathetic fait.',
+    relevancia: 'Son of Leto I and Jessica; first Kwisatz Haderach, Fremen messiah Muad’Dib, and founder of the Atreides Imperium who overthrows Shaddam IV and reshapes the galaxy.           _Paul is a savior, leader and man-God for the Fremen. In actual times: European aristocratic/privileged man that "saves" the natives from their own unicivilisation and pathetic fait.',
     saga: 'Dune'
     },
 
     CHANI: {
     nombre: 'CHANI KYNES',
     periodo: 'c. 10,170 – 10,210 AG',
-    relevancia: 'Fremen warrior and daughter of Liet-Kynes; Paul’s beloved concubine, guide in Fremen ways, and mother of Leto II and Ghanima.\nA strong and brave Fremen that gives her best to protect her sietch. But abandones her beliefs for the hero she falls in love, being reduced to be the mother of his offsprings',
+    relevancia: 'Fremen warrior and daughter of Liet-Kynes; Paul’s beloved concubine, guide in Fremen ways, and mother of Leto II and Ghanima.           _A strong and brave Fremen that gives her best to protect her sietch. But abandones her beliefs for the hero she falls in love, being reduced to be the mother of his offsprings',
     saga: 'Dune'
     },
 
@@ -270,7 +270,7 @@ ABULURD: {
     LETO_II: {
     nombre: 'LETO II ATREIDES / THE ELDER',
     periodo: '10,191 - 10,193 AG',
-    relevancia: 'The first born child of Paul Atreides and his lover (and later concubine) Chani. He was murdered in infancy during a Sardaukar attack on the sietch where he was being hidden. \nKilled by a Shapeshifter, a Tleilaxu creation. Related to the Non Binary identity. People without sould or personality who can adopt any human trait in order to serve disloyal purposes',
+    relevancia: 'The first born child of Paul Atreides and his lover (and later concubine) Chani. He was murdered in infancy during a Sardaukar attack on the sietch where he was being hidden.           _Killed by a Shapeshifter, a Tleilaxu creation. Related to the Non Binary identity. People without sould or personality who can adopt any human trait in order to serve disloyal purposes',
     saga: 'Dune'
     },
 
