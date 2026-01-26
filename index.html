@@ -5,6 +5,7 @@
   <title>Dune_ Big Houses family tree</title>
 
   <style>
+    /* ===== existing styles (kept / merged) ===== */
     body { 
       margin: 0; 
       overflow: hidden; 
@@ -190,10 +191,86 @@
       opacity: 1;
       transform: translateY(-1px);
     }
+
+    /* ===== overlay styles (added) ===== */
+    #welcome-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10050; /* higher than header (2000) */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    #welcome-overlay.hidden {
+      display: none;
+    }
+
+    #welcome-overlay .overlay-card {
+      background: #ffffff;
+      color: #111;
+      padding: 1.6rem;
+      border-radius: 12px;
+      max-width: 720px;
+      width: calc(100% - 48px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+      text-align: left;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height: 1.4;
+    }
+
+    #welcome-overlay .overlay-card h2 {
+      margin: 0 0 8px 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    #welcome-overlay .overlay-card p {
+      margin: 6px 0;
+      color: #444;
+      font-size: 14px;
+    }
+
+    #welcome-overlay .overlay-close {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border: none;
+      background: #0b5cff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #welcome-overlay .overlay-card * {
+      pointer-events: auto;
+    }
+
+    @media (max-width: 480px) {
+      #welcome-overlay .overlay-card { padding: 1rem; }
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- Welcome overlay (shows on first visit) -->
+  <div id="welcome-overlay" class="hidden" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div class="overlay-card" id="welcome-card">
+      <h2 id="welcome-title">Dune — Big Houses family tree</h2>
+      <p>
+        Bienvenido — este proyecto visualiza los árboles genealógicos de las Grandes Casas de Dune en 3D.
+        Haz clic en cualquier lugar fuera de este recuadro o pulsa el botón para continuar.
+      </p>
+      <p style="font-size:13px;color:#666;margin:6px 0 0 0;">
+        Consejo: haz clic en los nombres dentro del árbol 3D para abrir la ficha de cada personaje.
+      </p>
+      <button class="overlay-close">Entendido</button>
+    </div>
+  </div>
 
   <!-- HEADER -->
   <h1 style="
@@ -243,7 +320,7 @@
     <p><br>12_25/01_26</p>
 
     <p><br>
-      <a href="https://enriquepoza.bio" target="_blank">
+      <a href="https://enriquepoza.bio" target="_blank" rel="noopener">
         <img 
           src="./img/naming.png"
           alt="Enrique Poza Herranz"
@@ -252,6 +329,60 @@
       </a>
     </p>
   </div>
+
+  <!-- overlay behaviour script (inlined) -->
+  <script>
+    (function () {
+      const storageKey = 'dune_family_tree_seen_welcome_v1';
+      function domReady(fn){ if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
+
+      domReady(() => {
+        const overlay = document.getElementById('welcome-overlay');
+        if (!overlay) return;
+        const card = overlay.querySelector('.overlay-card');
+        const closeBtn = overlay.querySelector('.overlay-close');
+
+        function show() {
+          overlay.classList.remove('hidden');
+          overlay.setAttribute('tabindex', '-1');
+          overlay.focus();
+          try { document.body.style.overflow = 'hidden'; } catch (e) {}
+        }
+
+        function hide() {
+          overlay.classList.add('hidden');
+          try { localStorage.setItem(storageKey, '1'); } catch (e) {
+            try { sessionStorage.setItem(storageKey, '1'); } catch (e) {}
+          }
+          try { document.body.style.overflow = ''; } catch (e) {}
+        }
+
+        let seen = false;
+        try { seen = !!localStorage.getItem(storageKey); } catch (e) {
+          try { seen = !!sessionStorage.getItem(storageKey); } catch (e) { seen = false; }
+        }
+
+        if (!seen) {
+          show();
+        }
+
+        // Close when clicking outside the card
+        overlay.addEventListener('click', (e) => {
+          if (!card.contains(e.target)) hide();
+        });
+
+        // Close via button
+        closeBtn.addEventListener('click', hide);
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+            hide();
+          }
+        });
+      });
+    })();
+  </script>
 
   <!-- TOGGLE SCRIPT -->
   <script>
