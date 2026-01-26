@@ -191,9 +191,25 @@
       transform: translateY(-1px);
     }
   </style>
+  <link rel="stylesheet" href="./overlay.css" />
 </head>
 
 <body>
+
+  <!-- Welcome overlay (shows on first visit) -->
+<div id="welcome-overlay" class="hidden" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+  <div class="overlay-card" id="welcome-card">
+    <h2 id="welcome-title">Dune — Big Houses family tree</h2>
+    <p>
+      Welcome — this project visualizes the family trees of the Great Houses in 3D.
+      Click anywhere outside this box or the button below to continue.
+    </p>
+    <p style="font-size:13px;color:#666;margin:6px 0 0 0;">
+      (Tip: click names in the 3D tree to open person info.)
+    </p>
+    <button class="overlay-close">Got it</button>
+  </div>
+</div>
 
   <!-- HEADER -->
   <h1 style="
@@ -266,6 +282,7 @@
       toggleBtn.textContent = isOpen ? '–' : '+';
     });
   </script>
+  <script src="./overlay.js" defer></script>
 
 </body>
 </html>
