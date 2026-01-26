@@ -48,8 +48,8 @@
 #welcome-overlay .overlay-close {
   margin-top: 12px;
   padding: 10px 14px;
-  border: none;
-  background: #0b5cff;
+  border: 1px;
+  background: #ffffff;
   color: white;
   border-radius: 8px;
   cursor: pointer;
