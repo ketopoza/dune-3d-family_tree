@@ -2,7 +2,7 @@
 #welcome-overlay {
   position: fixed;
   inset: 0; /* top/right/bottom/left: 0 */
-  background: rgba(2,255,255,0.92);
+  background: rgba(255,255,255,0.92);
   display: flex;
   align-items: center;
   justify-content: center;
